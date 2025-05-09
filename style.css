@@ -1,0 +1,444 @@
+/* Global Styles */
+@import url('https://fonts.googleapis.com/css2?family=SF+Pro:wght@400;600;700&display=swap');
+
+body {
+    font-family: 'SF Pro', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+    background: #3399ff; /* Blue background for ripple effect */
+    color: #1d1d1f;
+    margin: 0;
+    padding: 0;
+    overflow-x: hidden;
+}
+
+/* Ripple Animation Background - Full Page */
+.ripple-background {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100vw;
+    height: 100vh;
+    overflow: hidden;
+    z-index: -1;
+    pointer-events: none; /* Ensures no interference with user interactions */
+}
+
+/* Circle Ripple Effect */
+.circle {
+    position: absolute;
+    border-radius: 50%;
+    background: rgba(255, 255, 255, 0.2); /* Semi-transparent white circles */
+    animation: ripple 15s infinite;
+    box-shadow: 0px 0px 1px 0px rgba(255, 255, 255, 0.5); /* Soft white shadow */
+}
+
+/* Ripple Sizes & Position */
+.small {
+    width: 200px;
+    height: 200px;
+    left: -100px;
+    bottom: -100px;
+}
+
+.medium {
+    width: 400px;
+    height: 400px;
+    left: -200px;
+    bottom: -200px;
+}
+
+.large {
+    width: 600px;
+    height: 600px;
+    left: -300px;
+    bottom: -300px;
+}
+
+.xlarge {
+    width: 800px;
+    height: 800px;
+    left: -400px;
+    bottom: -400px;
+}
+
+.xxlarge {
+    width: 1000px;
+    height: 1000px;
+    left: -500px;
+    bottom: -500px;
+}
+
+/* Opacity for Different Ripples */
+.shade1 { opacity: 0.4; }
+.shade2 { opacity: 0.7; }
+.shade3 { opacity: 0.2; }
+.shade4 { opacity: 0.3; }
+.shade5 { opacity: 0.5; }
+
+/* Ripple Animation */
+@keyframes ripple {
+    0% { transform: scale(0.8); }
+    50% { transform: scale(1.2); }
+    100% { transform: scale(0.8); }
+}
+
+/* Header (Logo, Title, and Navigation) */
+header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 10px 20px;
+    background: #0a2540;
+    position: sticky;
+    top: 0;
+    z-index: 1000;
+    border-bottom: 2px solid #ddd;
+}
+
+.logo-container img {
+    width: 135px;
+}
+
+.title-container {
+    flex: 1;
+    text-align: center;
+    margin-left: 20px; /* Add some spacing between logo and title */
+}
+
+.title-container h1 {
+    color: white;
+    font-size: 2rem;
+    font-weight: 700;
+    font-family: 'SF Pro', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+    margin: 0;
+    text-transform: uppercase;
+    letter-spacing: 2px;
+}
+
+/* Navigation Bar */
+nav {
+    display: flex;
+    justify-content: flex-end; /* Align navigation to the right */
+    align-items: center;
+    flex: 1;
+}
+
+nav ul {
+    list-style: none;
+    padding: 0;
+    display: flex;
+    gap: 30px; /* Spacing between navigation items */
+    justify-content: flex-end; /* Align navigation items to the right */
+    flex-wrap: nowrap; /* Prevent wrapping to the next line */
+}
+
+nav ul li a {
+    color: white;
+    text-decoration: none;
+    font-size: 1.2rem;
+    padding: 10px 15px;
+    border-radius: 5px;
+    transition: background 0.3s, color 0.3s;
+    white-space: nowrap; /* Prevent text from wrapping */
+}
+
+nav ul li a:hover {
+    background: white;
+    color: #0a2540;
+}
+
+/* Responsive Design for Navigation */
+@media (max-width: 768px) {
+    header {
+        flex-direction: column; /* Stack logo, title, and navigation vertically */
+        align-items: center;
+        padding: 10px; /* Reduce padding for smaller screens */
+    }
+
+    .logo-container {
+        margin-bottom: 10px; /* Add spacing between logo and title */
+    }
+
+    .title-container {
+        margin-left: 0; /* Remove margin for smaller screens */
+    }
+
+    nav {
+        justify-content: center; /* Center navigation items */
+        width: 100%; /* Full width for navigation */
+    }
+
+    nav ul {
+        gap: 15px; /* Reduce gap between navigation items */
+    }
+
+    nav ul li a {
+        font-size: 1rem; /* Smaller font size for smaller screens */
+        padding: 8px 12px; /* Smaller padding for smaller screens */
+    }
+}
+
+@media (max-width: 480px) {
+    .title-container h1 {
+        font-size: 1.5rem; /* Smaller title for mobile screens */
+    }
+
+    nav ul {
+        gap: 10px; /* Further reduce gap for mobile screens */
+    }
+
+    nav ul li a {
+        font-size: 0.9rem; /* Even smaller font size for mobile screens */
+        padding: 6px 10px; /* Even smaller padding for mobile screens */
+    }
+}
+/* Hero Section */
+.animated-circle {
+    width: 300px;
+    height: 300px;
+    background: linear-gradient(45deg, #26547C, #1a1a1a);
+    color: white;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    font-size: 1.5rem;
+    font-weight: bold;
+    margin: 50px auto;
+    animation: circleExpand 3s infinite alternate ease-in-out;
+}
+
+@keyframes circleExpand {
+    0% { transform: scale(1); opacity: 0.8; }
+    100% { transform: scale(1.1); opacity: 1; }
+}
+
+/* Content Sections */
+section {
+    padding: 50px;
+    text-align: center;
+    opacity: 0;
+    transition: opacity 1s ease-in-out;
+}
+
+section.visible {
+    opacity: 1;
+}
+
+.content {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 20px;
+    flex-wrap: wrap;
+}
+
+.text-block {
+    flex: 1;
+    text-align: left;
+    max-width: 600px;
+}
+
+.image-container img {
+    width: 250px;
+    border-radius: 50%;
+    transition: transform 0.5s ease-in-out;
+}
+
+.image-container img:hover {
+    transform: scale(1.2);
+}
+
+/* Services Section */
+.services-list {
+    list-style: none;
+    padding: 0;
+    text-align: left;
+    max-width: 600px;
+    margin: 0 auto;
+}
+
+.services-list li {
+    margin-bottom: 15px;
+    font-size: 1.1rem;
+    color: #333;
+    display: flex;
+    align-items: center;
+}
+
+.services-list li i {
+    color: #26547C;
+    margin-right: 10px;
+    font-size: 0.9rem;
+}
+
+.services-list li:hover {
+    color: #26547C;
+    cursor: pointer;
+}
+
+.services-list li:hover i {
+    transform: translateX(5px);
+    transition: transform 0.3s ease;
+}
+
+/* FAQs Section */
+.faq h3 {
+    cursor: pointer;
+    background: whitesmoke;
+    padding: 10px;
+    border-radius: 5px;
+    display: flex;
+    justify-content: space-between;
+    margin-left: 20%;
+    margin-right: 20%;
+}
+
+.faq p {
+    text-align: center;
+    display: none;
+    padding: 10px;
+    background: white;
+    margin-left: 20%;
+    margin-right: 20%;
+}
+
+.plus {
+    transition: transform 0.3s;
+}
+
+.faq.open .plus {
+    transform: rotate(45deg);
+}
+
+/* Footer */
+footer {
+    background: #0a2540;
+    color: white;
+    padding: 40px;
+    text-align: center;
+}
+
+footer a {
+    color: white;
+    text-decoration: none;
+    transition: color 0.3s;
+}
+
+footer a:hover {
+    color: #26547C;
+}
+
+.social-icons {
+    margin-top: 20px;
+}
+
+.social-icons a {
+    color: white;
+    margin: 0 10px;
+    font-size: 1.5rem;
+    transition: color 0.3s;
+}
+
+.social-icons a:hover {
+    color: #26547C;
+}
+
+.copyright {
+    margin-top: 20px;
+    font-size: 0.9rem;
+    opacity: 0.8;
+}
+
+/* Responsive Design */
+@media (max-width: 768px) {
+    header {
+        flex-direction: column;
+        align-items: center;
+        padding: 10px;
+    }
+
+    .logo-container img {
+        width: 100px;
+    }
+
+    .title-container h1 {
+        font-size: 1.5rem;
+        margin-top: 10px;
+    }
+
+    nav ul {
+        flex-direction: column;
+        gap: 10px;
+    }
+
+    nav ul li a {
+        font-size: 1rem;
+        padding: 8px 12px;
+    }
+
+    .animated-circle {
+        width: 200px;
+        height: 200px;
+        font-size: 1.2rem;
+    }
+
+    section {
+        padding: 20px;
+    }
+
+    .content {
+        flex-direction: column;
+    }
+
+    .text-block, .image-container {
+        width: 100%;
+        text-align: center;
+    }
+
+    .image-container img {
+        width: 200px;
+    }
+
+    .faq h3, .faq p {
+        margin-left: 5%;
+        margin-right: 5%;
+    }
+
+    footer {
+        padding: 20px;
+    }
+
+    footer p {
+        font-size: 0.9rem;
+    }
+
+    .social-icons a {
+        font-size: 1.2rem;
+    }
+}
+
+@media (max-width: 480px) {
+    .title-container h1 {
+        font-size: 1.2rem;
+    }
+
+    .animated-circle {
+        width: 150px;
+        height: 150px;
+        font-size: 1rem;
+    }
+
+    .faq h3, .faq p {
+        margin-left: 0;
+        margin-right: 0;
+    }
+
+    footer p {
+        font-size: 0.8rem;
+    }
+
+    .social-icons a {
+        font-size: 1rem;
+    }
+}
